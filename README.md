@@ -6,12 +6,9 @@ demo项目采用falsk + MySQL + Nginx
 -------
 
 ## 目录
-* [Docker安装](#docker安装)
-* [项目文件结构](#文件结构)
-* [Dockerfile](#dockerfile)
-* [docker-compose](#docker-compose)
-* [部署](#部署)
-* [整合](#整合)
+
+[TOC]
+
 -------
 
 ## Docker安装(Linux)
@@ -75,7 +72,7 @@ $ sudo systemctl restart docker.service
 ## Dockerfile
 ### falsk
 ##### 一个最小的falsk应用代码
-*hello.py *
+*hello.py*
 
 ```python
 from flask import Flask
@@ -179,7 +176,72 @@ http {
     }
 }
 ```
+##### 配置https
+需要SSL证书文件 `1_www.domain.com_bundle.crt` 和私钥文件 `2_www.domain.com.key`
 
+修改*nginx.conf*为
+
+```
+worker_processes 1;
+
+events { worker_connections 1024; }
+
+http {
+
+    sendfile on;
+
+    server {
+
+        listen 80;
+        listen 443;   # ssl端口
+        charset utf-8;
+        server_name www.domain.com; #填写绑定证书的域名
+        # ssl配置
+        ssl on;
+        ssl_certificate 1_www.domain.com_bundle.crt;
+        ssl_certificate_key 2_www.domain.com.key;
+        ssl_session_timeout 5m;
+        ssl_protocols TLSv1 TLSv1.1 TLSv1.2; #按照这个协议配置
+        ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:HIGH:!aNULL:!MD5:!RC4:!DHE;#按照这个套件配置
+        ssl_prefer_server_ciphers on;
+        location / {
+            proxy_pass http://flask:5000/;
+            proxy_set_header  X-Real-IP  $remote_addr;
+        }
+    }
+}
+```
+同时修改*Dockerfile*
+
+```
+FROM daocloud.io/nginx:latest
+
+MAINTAINER L "782096772@qq.com"
+
+# 从配置文件中删除默认配置
+RUN rm -v /etc/nginx/nginx.conf
+
+# 从当前目录复制配置文件
+ADD nginx.conf /etc/nginx/
+
+# 复制ssl证书到nginx路径下
+ADD 1_www.domain.com_bundle.crt /etc/nginx/
+ADD 2_www.domain.com.key /etc/nginx/
+
+# 暴露端口
+# EXPOSE 80
+
+```
+
+修改 *docker-compose.yml* 中的nginx的ports为
+
+```
+ports:
+    - "443:443"
+```
+
+配置全站加密，http自动跳转https
+在http的server里增加`rewrite ^(.*) https://$host$1 permanent;`
 
 ### MySQL
 
