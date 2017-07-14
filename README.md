@@ -292,6 +292,8 @@ services:
  
     mysql:
       image: daocloud.io/mysql:5.6
+      <!--utf-8-->
+      command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci --init-connect='SET NAMES UTF8;' --innodb-flush-log-at-trx-commit=0
       environment:
         <!--配置默认用户root的密码-->
         - MYSQL_ROOT_PASSWORD=root123
