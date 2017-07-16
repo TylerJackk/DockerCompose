@@ -1,3 +1,5 @@
+
+
 # DockerCompose
 使用Docker-compose快速部署整个项目环境
 
@@ -7,25 +9,24 @@ demo项目采用falsk + MySQL + Nginx
 
 ## 目录
 
-* [DockerCompose](#dockercompose)
-      * [目录](#目录)
-      * [Docker安装(Linux)](#docker安装linux)
-      * [项目文件结构](#项目文件结构)
-      * [Dockerfile](#dockerfile)
-         * [falsk](#falsk)
-               * [一个最小的falsk应用代码](#一个最小的falsk应用代码)
-               * [配置项目依赖环境](#配置项目依赖环境)
-               * [Dockerfile编写](#dockerfile编写)
-         * [nginx](#nginx)
-               * [Dockerfile编写](#dockerfile编写-1)
-               * [配置nginx](#配置nginx)
-               * [配置https](#配置https)
-         * [MySQL](#mysql)
-      * [docker-compose](#docker-compose)
-      * [部署](#部署)
-      * [整合](#整合)
-      * [TODO](#todo)
-
+- [DockerCompose](#dockercompose)
+  - [目录](#%E7%9B%AE%E5%BD%95)
+  - [Docker安装(Linux)](#docker%E5%AE%89%E8%A3%85linux)
+  - [项目文件结构](#%E9%A1%B9%E7%9B%AE%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84)
+  - [Dockerfile](#dockerfile)
+    - [falsk](#falsk)
+        - [一个最小的falsk应用代码](#%E4%B8%80%E4%B8%AA%E6%9C%80%E5%B0%8F%E7%9A%84falsk%E5%BA%94%E7%94%A8%E4%BB%A3%E7%A0%81)
+        - [配置项目依赖环境](#%E9%85%8D%E7%BD%AE%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96%E7%8E%AF%E5%A2%83)
+        - [Dockerfile编写](#dockerfile%E7%BC%96%E5%86%99)
+    - [nginx](#nginx)
+        - [Dockerfile编写](#dockerfile%E7%BC%96%E5%86%99-1)
+        - [配置nginx](#%E9%85%8D%E7%BD%AEnginx)
+        - [配置https](#%E9%85%8D%E7%BD%AEhttps)
+    - [MySQL](#mysql)
+  - [docker-compose](#docker-compose)
+  - [部署](#%E9%83%A8%E7%BD%B2)
+  - [整合](#%E6%95%B4%E5%90%88)
+  - [TODO](#todo)
 
 -------
 
