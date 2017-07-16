@@ -26,6 +26,7 @@ demo项目采用falsk + MySQL + Nginx
       * [整合](#整合)
       * [TODO](#todo)
 
+
 -------
 
 ## Docker安装(Linux)
@@ -337,7 +338,7 @@ $ docker-compose up
 
 up后访问服务器ip地址
 
-![](https://ws1.sinaimg.cn/large/006tNc79gy1fhh5ikq1e5j30aq04xmx9.jpg)
+![](https://ws4.sinaimg.cn/large/006tKfTcgy1fhlrbt5amgj30am04fjrd.jpg)
 
 不加5000端口可以看到输出信息则flask和nginx部署成功
 
@@ -406,5 +407,5 @@ apt-get install -y python \
 
 
 ## TODO
-* [ ] Nginx https配置
+* [x] Nginx https配置
 
