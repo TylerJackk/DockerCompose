@@ -26,4 +26,6 @@ services:
         - .:/code
       expose:
         - "5000"
+      environment: 
+        - TZ=Asia/Shanghai
     
